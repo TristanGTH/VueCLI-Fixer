@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import mitt from 'mitt'
+
+
+const bus = mitt()
 
 import { IonicVue } from '@ionic/vue';
 
@@ -26,7 +30,9 @@ import './theme/variables.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-  
+
+app.config.globalProperties.bus = bus
+
 router.isReady().then(() => {
   app.mount('#app');
 });
